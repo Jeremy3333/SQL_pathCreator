@@ -8,7 +8,7 @@ class Path
 {
 private:
     int **possiblePaths;
-    int **pathId;
+    int **pathID;
     int width;
     int height;
     SDL_Texture *pathTexture[5];

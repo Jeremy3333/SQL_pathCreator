@@ -8,15 +8,15 @@ Path::Path(int p_width, int p_height, const RenderWindow &window)
     width = p_width;
     height = p_height;
     possiblePaths = new int *[width];
-    pathId = new int *[width];
+    pathID = new int *[width];
     for (int i = 0; i < width; i++)
     {
         possiblePaths[i] = new int[height];
-        pathId[i] = new int[height];
+        pathID[i] = new int[height];
         for (int j = 0; j < height; j++)
         {
             possiblePaths[i][j] = 5;
-            pathId[i][j] = 0;
+            pathID[i][j] = -1;
         }
     }
 
@@ -32,10 +32,10 @@ Path::~Path()
     for (int i = 0; i < width; i++)
     {
         delete[] possiblePaths[i];
-        delete[] pathId[i];
+        delete[] pathID[i];
     }
     delete[] possiblePaths;
-    delete[] pathId;
+    delete[] pathID;
 
     for (int i = 0; i < 5; i++)
     {
@@ -52,8 +52,7 @@ void Path::draw(RenderWindow &window)
     {
         for (int j = 0; j < height; j++)
         {
-
-            window.drawTexture(pathTexture[1], ((float)SCREEN_WIDTH / (float)PATH_WIDTH) * (float)i, ((float)SCREEN_HEIGHT / (float)PATH_HEIGHT) * (float)j, heightModifier);
+            window.drawTexture(pathTexture[pathID[i][j]], ((float)SCREEN_WIDTH / (float)PATH_WIDTH) * (float)i, ((float)SCREEN_HEIGHT / (float)PATH_HEIGHT) * (float)j, heightModifier);
         }
     }
 }
